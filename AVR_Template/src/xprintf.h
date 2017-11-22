@@ -13,6 +13,7 @@
 #define _USE_XFUNC_IN	1	/* 1: Use input function */
 #define	_LINE_ECHO		1	/* 1: Echo back input chars in xgets function */
 
+//#define printf(...) xprintf(__VA_ARGS__)
 
 #if _USE_XFUNC_OUT
 #define xdev_out(func) xfunc_out = (void(*)(unsigned char))(func)

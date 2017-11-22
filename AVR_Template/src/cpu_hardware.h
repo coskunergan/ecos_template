@@ -10,12 +10,11 @@
 
 #include <asf.h>
 #include "compiler.h"
+#include "xprintf.h"
 #include "conf_clock.h"
 #include "conf_uart.h"
 #include <string.h>
-#include "compiler.h"
-#include "xprintf.h"
-#include "string.h"
+//#include "string.h"
 #include "adp.h"
 #include "adp_interface.h"
 
