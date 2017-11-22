@@ -211,7 +211,7 @@ static inline void timers_init(void)
 	TCCR2B=0x07;  // Timer mode with 1024 prescler (clock böleni en tick timer böleni ile ayný olmalýdýr.)
 }
 /****************************************************************************/
-static void adp_window_add_terminal(void)
+void adp_window_add_terminal(void)
 {
 	struct adp_msg_configure_stream stream;
 	
@@ -242,7 +242,7 @@ static void adp_window_add_terminal(void)
 	adp_add_stream_to_terminal(&conf_stream, "Status messages");
 }
 /****************************************************************************/
-static void adp_window_add_dashboard_control(void)
+void adp_window_add_dashboard_control(void)
 {
 	/* Add a dashboard */
 	struct adp_msg_conf_dashboard dashboard_con = {
@@ -379,28 +379,8 @@ void Cpu_Hardware_Init(void)
 	delay_ms(5);
 	gpio_set_pin_low(BUZZER_PIN);
 	
-	//gpio_set_pin_high(RED_LED_PIN);
-	//gpio_set_pin_high(GREEN_LED_PIN);
-	//uart_putstr(test_string,strlen(test_string));
 	//button_2=ioport_get_pin_level(BUTTON_2);
 	//uart_putstr(test_string,strlen(test_string));
-
-	gpio_set_pin_high(GREEN_LED_PIN);
-	
-	while (adp_wait_for_handshake() != ADP_HANDSHAKE_ACCEPTED)
-	{
-	}
-
-	gpio_set_pin_low(GREEN_LED_PIN);
-	gpio_set_pin_high(RED_LED_PIN);
-	delay_us(5500);
-
-	adp_window_add_dashboard_control();
-
-	adp_window_add_terminal();
-	
-	gpio_set_pin_low(RED_LED_PIN);
-	gpio_set_pin_low(GREEN_LED_PIN);
 }
 /****************************************************************************/
 /****************************************************************************/

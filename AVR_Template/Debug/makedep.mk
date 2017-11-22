@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+threads\adp_thread.c
+
 threads\buzzer_thread.c
 
 threads\led_thread.c

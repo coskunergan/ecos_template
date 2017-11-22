@@ -27,7 +27,7 @@ PROCESS_THREAD(buzzer_process, ev, data)
 
     printf("Buzzer End!\n");
 
-    process_start(&led_process,NULL);
+   // process_start(&led_process,NULL);
 
     PROCESS_END();
 }

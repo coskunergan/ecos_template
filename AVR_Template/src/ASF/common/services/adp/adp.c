@@ -288,8 +288,9 @@ enum adp_handshake_status adp_wait_for_handshake(void)
 	uint8_t handshake_status;
 
 	/* Keep sending handshake until we get something back */
-	while (adp_request_handshake(ADP_VERSION, ADP_HANDSHAKE_OPTIONS_GPIO, &handshake_status) == false) {
-		
+	if (adp_request_handshake(ADP_VERSION, ADP_HANDSHAKE_OPTIONS_GPIO, &handshake_status) == false) 
+	{
+		handshake_status= ADP_HANDSHAKE_REJECTED_OTHER;
 	}
 	/* Return status */
 	return ((enum adp_handshake_status)handshake_status);

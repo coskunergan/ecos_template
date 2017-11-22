@@ -68,5 +68,7 @@ extern void Tick_Timer_Process(void);
 extern void Second_Timer_Process(void);
 void Cpu_Measurement(void);
 void Cpu_Hardware_Init(void);
+void adp_window_add_dashboard_control(void);
+void adp_window_add_terminal(void);
 
 #endif

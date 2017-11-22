@@ -12,22 +12,57 @@
 #include "ecos.h"
 #include "clock.h"
 
-/*-----------------------------------------------------------------------------------*/
-clock_time_t
-clock_time(void)
+/*---------------------------------------------------------------------------*/
+static volatile unsigned long seconds = 0;
+static volatile clock_time_t ticks;
+/*---------------------------------------------------------------------------*/
+void ecos_tick(void)
 {
-  unsigned long long time;
-
-//  GetSystemTimeAsFileTime((PFILETIME)&time);
-  return (clock_time_t)(time / 10000);
+	ticks++;
+	if((ticks % CLOCK_SECOND) == 0) {
+		seconds++;
+	}
+	
+	if(etimer_pending()) {
+		etimer_request_poll();
+	}	
 }
-/*-----------------------------------------------------------------------------------*/
-unsigned long
-clock_seconds(void)
+/*---------------------------------------------------------------------------*/
+void clock_init(void)
 {
-  unsigned long long time;
-
- // GetSystemTimeAsFileTime((PFILETIME)&time);
-  return (clock_time_t)(time / 10);
+	ticks = 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+unsigned long clock_seconds(void)
+{
+	return seconds;
+}
+/*---------------------------------------------------------------------------*/
+void clock_set_seconds(unsigned long sec)
+{
+	seconds = sec;
+}
+/*---------------------------------------------------------------------------*/
+clock_time_t clock_time(void)
+{
+	return ticks;
+}
+/*---------------------------------------------------------------------------*/
+void clock_delay(unsigned int i)
+{
+	for(; i > 0; i--) {
+		unsigned int j;
+		for(j = 50; j > 0; j--) {
+			asm ("nop");
+		}
+	}
+}
+/*---------------------------------------------------------------------------*/
+/* Wait for a multiple of clock ticks (7.8 ms at 128 Hz). */
+void clock_wait(clock_time_t t)
+{
+	clock_time_t start;
+	start = clock_time();
+	while(clock_time() - start < (clock_time_t)t) ;
+}
+/*---------------------------------------------------------------------------*/

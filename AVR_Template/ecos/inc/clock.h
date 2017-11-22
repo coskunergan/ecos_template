@@ -9,7 +9,7 @@
 #ifndef CLOCK_H_
 #define CLOCK_H_
 
-#define CLOCK_CONF_SECOND 1000
+#define CLOCK_CONF_SECOND 100
 typedef unsigned long clock_time_t;
 
 #ifdef CLOCK_CONF_SECOND
@@ -18,15 +18,13 @@ typedef unsigned long clock_time_t;
 #define CLOCK_SECOND (clock_time_t)32
 #endif
 
+void ecos_tick(void);
 void clock_init(void);
-clock_time_t clock_time(void);
 unsigned long clock_seconds(void);
 void clock_set_seconds(unsigned long sec);
-void clock_wait(clock_time_t t);
-void clock_delay_usec(int dt);
-int clock_fine_max(void);
-unsigned short clock_fine(void);
+clock_time_t clock_time(void);
 void clock_delay(unsigned int delay);
+void clock_wait(clock_time_t t);
 
 #endif /* CLOCK_H_ */
 

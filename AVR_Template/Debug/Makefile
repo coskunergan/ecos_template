@@ -72,6 +72,7 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../threads/adp_thread.c \
 ../threads/buzzer_thread.c \
 ../threads/led_thread.c \
 ../threads/start_thread.c \
@@ -102,6 +103,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+threads/adp_thread.o \
 threads/buzzer_thread.o \
 threads/led_thread.o \
 threads/start_thread.o \
@@ -125,6 +127,7 @@ src/ASF/mega/drivers/usart/usart_mega.o \
 src/main.o
 
 OBJS_AS_ARGS +=  \
+threads/adp_thread.o \
 threads/buzzer_thread.o \
 threads/led_thread.o \
 threads/start_thread.o \
@@ -148,6 +151,7 @@ src/ASF/mega/drivers/usart/usart_mega.o \
 src/main.o
 
 C_DEPS +=  \
+threads/adp_thread.d \
 threads/buzzer_thread.d \
 threads/led_thread.d \
 threads/start_thread.d \
@@ -171,6 +175,7 @@ src/ASF/mega/drivers/usart/usart_mega.d \
 src/main.d
 
 C_DEPS_AS_ARGS +=  \
+threads/adp_thread.d \
 threads/buzzer_thread.d \
 threads/led_thread.d \
 threads/start_thread.d \
@@ -207,6 +212,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
