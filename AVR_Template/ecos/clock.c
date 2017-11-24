@@ -18,14 +18,15 @@ static volatile clock_time_t ticks;
 /*---------------------------------------------------------------------------*/
 void ecos_tick(void)
 {
-	ticks++;
-	if((ticks % CLOCK_SECOND) == 0) {
-		seconds++;
-	}
-	
+	ticks++;	
 	if(etimer_pending()) {
 		etimer_request_poll();
 	}	
+}
+/*---------------------------------------------------------------------------*/
+void ecos_second_tick(void)
+{
+	seconds++;
 }
 /*---------------------------------------------------------------------------*/
 void clock_init(void)

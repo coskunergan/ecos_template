@@ -8,8 +8,6 @@
 #include "cpu_hardware.h"
 #include "ecos.h"
 
-extern const struct process *procinit[];
-
 /****************************************************************************/
 void Tick_Timer_Process(void)
 {
@@ -18,7 +16,7 @@ void Tick_Timer_Process(void)
 /****************************************************************************/
 void Second_Timer_Process(void)
 {
-
+	ecos_second_tick();
 }
 /****************************************************************************/
 /****************************************************************************/
@@ -37,17 +35,10 @@ int main (void)
 	
 	while(1)
 	{
-		 	Cpu_Measurement();
-
-			//xprintf("time = %d.%d.%d - %02d:%02d:%02d wd=%d\r",real_date.year,real_date.month+1,real_date.date+1,real_date.hour,real_date.minute,real_date.second,real_date.dayofweek);	
-					
-			//delay_us(250);// + %3
-			
-			process_run();
-			
-			gpio_toggle_pin(RED_LED_PIN);		
+		Cpu_Measurement();
+		process_run();	
+		gpio_toggle_pin(RED_LED_PIN);		
 	}
-
 }
 /****************************************************************************/
 /****************************************************************************/

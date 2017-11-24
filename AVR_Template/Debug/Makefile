@@ -74,6 +74,7 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../threads/adp_thread.c \
 ../threads/buzzer_thread.c \
+../threads/cpu_thread.c \
 ../threads/led_thread.c \
 ../threads/start_thread.c \
 ../ecos/clock.c \
@@ -105,6 +106,7 @@ ASM_SRCS +=
 OBJS +=  \
 threads/adp_thread.o \
 threads/buzzer_thread.o \
+threads/cpu_thread.o \
 threads/led_thread.o \
 threads/start_thread.o \
 ecos/clock.o \
@@ -129,6 +131,7 @@ src/main.o
 OBJS_AS_ARGS +=  \
 threads/adp_thread.o \
 threads/buzzer_thread.o \
+threads/cpu_thread.o \
 threads/led_thread.o \
 threads/start_thread.o \
 ecos/clock.o \
@@ -153,6 +156,7 @@ src/main.o
 C_DEPS +=  \
 threads/adp_thread.d \
 threads/buzzer_thread.d \
+threads/cpu_thread.d \
 threads/led_thread.d \
 threads/start_thread.d \
 ecos/clock.d \
@@ -177,6 +181,7 @@ src/main.d
 C_DEPS_AS_ARGS +=  \
 threads/adp_thread.d \
 threads/buzzer_thread.d \
+threads/cpu_thread.d \
 threads/led_thread.d \
 threads/start_thread.d \
 ecos/clock.d \
@@ -212,6 +217,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

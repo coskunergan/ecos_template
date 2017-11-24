@@ -304,7 +304,16 @@
     <Compile Include="threads\buzzer_thread.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="threads\cpu_thread.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="threads\inc\adp_thread.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="threads\inc\buzzer_thread.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="threads\inc\cpu_thread.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="threads\inc\led_thread.h">

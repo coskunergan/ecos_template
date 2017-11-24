@@ -19,6 +19,7 @@ typedef unsigned long clock_time_t;
 #endif
 
 void ecos_tick(void);
+void ecos_second_tick(void);
 void clock_init(void);
 unsigned long clock_seconds(void);
 void clock_set_seconds(unsigned long sec);

@@ -6,7 +6,7 @@
 PROCINIT(	&etimer_process,    \				
 			&adp_process,		\
 			&led_process,		\			
-			&buzzer_process 	\
+			&buzzer_process 	\			
 			);
 /*---------------------------------------------------------------------------*/
 PROCESS(start_process, "start process");
@@ -16,7 +16,7 @@ PROCESS_THREAD(start_process, ev, data)
 	int i;
 	
     PROCESS_BEGIN();
-
+	
 	printf("Start the Operation System.\n");
 	
     printf("Creating Threads.\n");

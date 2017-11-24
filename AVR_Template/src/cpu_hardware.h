@@ -66,6 +66,8 @@ extern struct calendar_date real_date;
 
 extern void Tick_Timer_Process(void);
 extern void Second_Timer_Process(void);
+void Send_to_Cpu_Information(void);
+void Restart_Cpu_Measurement(void);
 void Cpu_Measurement(void);
 void Cpu_Hardware_Init(void);
 void adp_window_add_dashboard_control(void);

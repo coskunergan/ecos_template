@@ -53,40 +53,27 @@ ISR(TIMER0_OVF_vect)// tick timer (10ms)
 /****************************************************************************/
 ISR(TIMER1_OVF_vect) // second timer (1sn)
 {
-	static uint8_t kont=0;
-	uint8_t i;
-
 	SEC_TIMER_COUNTER = SEC_TIMER_RELOAD;
 	
 	Second_Timer_Process();
 	
 	calendar_add_second_to_date(&real_date);
-	
-	if(kont++ ==3)
-	{
-		cpu_measurement_restart=true;		
-	}
-
-	//gpio_toggle_pin(GREEN_LED_PIN);		
-	
-	/*xprintf("\ravg  = %%%d \r",CPU_PERCENT_AVG);
-	xprintf("max = %%%d \r",CPU_PERCENT_MAX);
-	xprintf("min = %%%d \r",CPU_PERCENT_MIN);
-	xprintf("dlyed = %d \r",cpu_status);*/
-	
-	//xprintf("T0 = %d \r",TICK_TIMER_COUNTER);
-	//xprintf("T2 = %d \r",CPU_TIMER_COUNTER);
-	
-	 if(kont>2)
-	 {
-		 i=CPU_PERCENT_AVG;
-		 adp_transceive_single_stream(STREAM_ID_CPU_USAGE,&i , 1, receive_packet_data);
-		 sprintf(receive_packet_data,"Cpu_Max:%%%d\r",CPU_PERCENT_MAX);
-		 adp_transceive_single_stream(STREAM_ID_STATUS_MESSAGE,receive_packet_data,strlen(receive_packet_data),receive_packet_data);
-		 sprintf(receive_packet_data,"Cpu_Min:%%%d\r\r",CPU_PERCENT_MIN);
-		 adp_transceive_single_stream(STREAM_ID_STATUS_MESSAGE,receive_packet_data,strlen(receive_packet_data),receive_packet_data);
-	 }
-	
+}
+/****************************************************************************/
+void Send_to_Cpu_Information(void)
+{
+	uint8_t temp=CPU_PERCENT_AVG;
+			
+	adp_transceive_single_stream(STREAM_ID_CPU_USAGE,&temp , 1, receive_packet_data);
+	sprintf(receive_packet_data,"Cpu_Max:%%%d\r",CPU_PERCENT_MAX);
+	adp_transceive_single_stream(STREAM_ID_STATUS_MESSAGE,receive_packet_data,strlen(receive_packet_data),receive_packet_data);
+	sprintf(receive_packet_data,"Cpu_Min:%%%d\r\r",CPU_PERCENT_MIN);
+	adp_transceive_single_stream(STREAM_ID_STATUS_MESSAGE,receive_packet_data,strlen(receive_packet_data),receive_packet_data);
+}
+/****************************************************************************/
+void Restart_Cpu_Measurement(void)
+{
+	cpu_measurement_restart=true;	
 }
 /****************************************************************************/
 ISR(UART0_DATA_EMPTY_IRQ)

@@ -1,6 +1,5 @@
 
 #include "ecos.h"
-
 #include "adp_thread.h"
 
 /*---------------------------------------------------------------------------*/
@@ -8,7 +7,7 @@ PROCESS(adp_process, "adp process");
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(adp_process, ev, data)
 {
-   static struct etimer timer_etimer;
+    static struct etimer timer_etimer;
 	static uint8_t retry=10;
 	
     PROCESS_BEGIN();
@@ -22,10 +21,12 @@ PROCESS_THREAD(adp_process, ev, data)
 	}
 	
 	if(retry != 0)
-	{			
+	{						
 		adp_window_add_dashboard_control();
 
 		adp_window_add_terminal();
+		
+		process_start(&cpu_process,NULL); // cpu ölçüm bilgileri gönderilecek ve cpu grafik çizilecek
 	}
 
 	PROCESS_EXIT();

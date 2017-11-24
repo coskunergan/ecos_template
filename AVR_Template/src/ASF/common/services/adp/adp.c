@@ -227,13 +227,14 @@ static bool adp_check_for_response(uint8_t rx_id, uint8_t* protocol_buf, uint8_t
 
 static void adp_wait_for_response(uint8_t rx_id, uint8_t* protocol_buf, uint8_t length)// iþlemci burtada kilitli kalabiliyor 
 {
+	uint8_t retry;	
 	uint8_t rx_buf[ADP_MAX_PACKET_DATA_SIZE] = {0,};
 
 	packet_received = false;
 	length = length + ADP_LENGTH_PACKET_HEADER;
 	
-	
-	while((adp_is_received() == false)) {
+	retry = 50;
+	while((adp_is_received() == false) & (retry-- > 0)) {
 		
 		if(adp_interface_read_response(rx_buf, length) == STATUS_OK) {							
 			adp_protocol_add_byte(rx_id, rx_buf, length, protocol_buf);

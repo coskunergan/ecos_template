@@ -22,8 +22,10 @@
 #include "cpu_hardware.h"
 
 #include "start_thread.h"
+#include "cpu_thread.h"
 #include "buzzer_thread.h"
 #include "led_thread.h"
 #include "adp_thread.h"
+
 
 #endif /* ECOS_H_ */

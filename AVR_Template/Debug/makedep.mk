@@ -6,6 +6,8 @@ threads\adp_thread.c
 
 threads\buzzer_thread.c
 
+threads\cpu_thread.c
+
 threads\led_thread.c
 
 threads\start_thread.c
